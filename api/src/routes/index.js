@@ -2,7 +2,7 @@ const { Router } = require('express');
 const axios = require('axios');
 const {Type, Recipe} = require('../db')
 
-const API_KEY = '93bd2fce843c48c9adf6bba55a89c58c';
+const API_KEY = 'e790c2ade9994f8680bb905053031174';
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 

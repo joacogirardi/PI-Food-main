@@ -2,13 +2,15 @@ import React, { Fragment, useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 // import { Link } from "react-router-dom";
 import Card from './Card';
-import {getRecipes, filterRecipesByDiet} from '../actions/index';
+import {getRecipes, filterRecipesByDiet, orderByName, orderBySpoonacularScore} from '../actions/index';
 import Paginado from "./Paginado";
+import SearchBar from "./SearchBar";
 
 
 export default function Home () {
 const dispatch = useDispatch();
-const allRecipes = useSelector((state)=> state.recipes);  //tiene el array de recipes dentro del estado
+const allRecipes = useSelector((state)=> state.allRecipes);  //tiene el array de recipes dentro del estado
+const [order, setOrder] = useState('');
 
 const [currentPage, setCurrentPage] = useState(1);
 const [recipesPage, setRecipesPage] = useState(9);
@@ -35,22 +37,34 @@ function handleFilterDiets(e){
     dispatch(filterRecipesByDiet(e.target.value))
 }
 
+function handleSortName(e){
+    e.preventDefault();
+    dispatch(orderByName(e.target.value));
+    setCurrentPage(1);
+    setOrder(`ordered by name${e.target.value}`);
+}
 
-
+function handleSortScore(e){
+    e.preventDefault();
+    dispatch(orderBySpoonacularScore(e.target.value));
+    setCurrentPage(1);
+    setOrder(`ordered by score${e.target.value}`)
+}
 
 
     return (
         <div>
+            <SearchBar />
             <button onClick={e=> {handleClick(e)}}>
-                reload recipes
+                clear filters
             </button>
             <div>
-                <select>
+                <select onChange={e=> {handleSortName(e)}}>
                     <option value="" disabled selected>Order alfabeticam</option>   
                     <option value='asc'> asce </option>
                     <option value='dsc'> desc </option>
                 </select>
-                <select>
+                <select onChange={e=> {handleSortScore(e)}}>
                     <option value="" disabled selected>Order puntuacion</option>   
                     <option value='asc'> asce </option>
                     <option value='dsc'> desc </option>
