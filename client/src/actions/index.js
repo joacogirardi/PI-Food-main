@@ -11,3 +11,10 @@ export const getRecipes = ()=> {
         })
     }
 }
+
+export const filterRecipesByDiet = (payload)=>{
+    return {
+        type : "FILTER_BY_DIET",
+        payload : payload
+    }
+}

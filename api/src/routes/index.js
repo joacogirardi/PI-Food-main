@@ -2,7 +2,7 @@ const { Router } = require('express');
 const axios = require('axios');
 const {Type, Recipe} = require('../db')
 
-const API_KEY = '118b5124c57d469cbcec610411a99ec5';
+const API_KEY = '93bd2fce843c48c9adf6bba55a89c58c';
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -12,12 +12,40 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
+//limit de 100
 const recipes_api = async()=>{
     try {
         const url = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`);
         const results = url.data.results;
         const recipe_json = [];
-        for (let i = 0 ; i < 10 ; i++){
+        for (let i = 0 ; i < results.length ; i++){
+            let data = await results[i];
+            recipe_json.push({
+                id : data.id,
+                name : data.title,
+                image : data.image,
+                dishTypes : data.dishTypes,
+                diets : data.diets.join(', '),
+                summary : data.summary,
+                spoonacularScore : data.spoonacularScore,
+                healthScore : data.healthScore,
+                steps : data.analyzedInstructions[0],
+            })
+        }
+        return recipe_json;
+    }
+    catch(e){
+        console.log(e)
+    }
+};
+ 
+//allRecipes sin limit
+const allRecipes_api = async()=>{
+    try {
+        const url = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`);
+        const results = url.data.results;
+        const recipe_json = [];
+        for (let i = 0 ; i < results.length ; i++){
             let data = await results[i];
             recipe_json.push({
                 id : data.id,
@@ -37,6 +65,7 @@ const recipes_api = async()=>{
         console.log(e)
     }
 };
+
 
 const recipes_db = async()=>{
     return await Recipe.findAll({
@@ -115,21 +144,29 @@ router.get('/recipes/:id', async (req, res)=>{
 
 router.get('/types', async (req, res)=>{
     try {
-        // const url = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`);
-        const types = ['main course','side dish','dessert','appetizer','salad','bread','breakfast','soup',
-                        'beverage','sauce','marinade','fingerfood','snack','drink'];
+        const types = ["vegetarian", "vegan", "gluten free"];
+        const dat = await allRecipes_api();
+        const types_arrays = dat.map(e=> e.diets);
+
+        types_arrays.forEach(e=> e.map(e=> {
+            if(!types.includes(e)){
+                types.push(e)
+            }
+        }) );
+
         types.forEach(e => {
             Type.findOrCreate({
                 where: {name : e}
             })
         });
+
         const allresults = await Type.findAll({
             attributes : ["name"]
         });
         res.send(allresults.map(e=>e.name)) 
     }
-    catch(e){
-        console.log(e)
+    catch(error){
+        console.log(error)
     }
 });
 
@@ -158,7 +195,7 @@ router.post('/recipe', async (req, res)=>{
         })
     
         let recipetypedb = await Type.findAll({
-            where : {name : dishTypes}
+            where : {name : diets}
         });
         newRecipe.addTypes(recipetypedb);
         res.status(200).send('Recipe successfully created');
