@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 
 export default function Detail(props){
     const dispatch = useDispatch();
-    const {id} = useParams()
+    const {id} = useParams();
     
     useEffect(()=>{
         dispatch(getDetails(id))
@@ -27,7 +27,8 @@ export default function Detail(props){
                     <h2>{recipe[0].summary}</h2>
                     <h2>{recipe[0].spoonacularScore}</h2>
                     <h2>{recipe[0].healthScore}</h2>
-                    <h2>{recipe[0].steps.steps ? recipe[0].steps.steps.map(e=>(' ' + e.number + ' : ' + e.step)) : recipe[0].steps}</h2>
+                    <h2>{recipe[0].steps[0].step ? recipe[0].steps.map(e=>(' ' + e.number + ' : ' + e.step)) : recipe[0].steps}</h2>
+                    <Link to={'/home'}><button>Back Home</button></Link>
                 </div>
                 :
                 <div>

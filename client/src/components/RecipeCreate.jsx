@@ -11,10 +11,38 @@ export default function RecipeCreate(){
     const type = useSelector((state)=> state.recipeTypes);
     const [errors, setErrors] = useState({});
 
+    function validate(input) {
+        const errors = {};
+        if (!input.name) {
+            errors.name = '⚠️ Name is required ⚠️';
+        }
+        if (!input.diets.length) {
+            errors.diets = '⚠️ Diets is required ⚠️'
+        }
+        if (!input.image) {
+            errors.image = '⚠️ image is required ⚠️'
+        }
+        if (!input.summary) {
+            errors.summary = '⚠️ summary is required ⚠️'
+        }
+        if (!input.spoonacularScore) {
+            errors.spoonacularScore = '⚠️ spoonacular Score is required ⚠️'
+        }
+        if (!input.healthScore) {
+            errors.healthScore = '⚠️ health Score is required ⚠️'
+        }
+        if (!input.steps) {
+            errors.steps = '⚠️ steps is required ⚠️'
+        }
+    
+        return errors;
+    };
+
     const [input, setInput] = useState({
         name : "",
         image : "",
         diets : [],
+        // dishTypes : []
         summary : "",
         spoonacularScore : "",
         healthScore : "",
@@ -30,6 +58,10 @@ export default function RecipeCreate(){
             ...input,
             [e.target.name] : e.target.value
         })
+        setErrors(validate({
+            ...input,
+            [e.target.name]: e.target.value
+        }));
     }
 
     function handleCheckbox(e){
@@ -55,8 +87,15 @@ export default function RecipeCreate(){
             healthScore : "",
             steps : "",
         });
-        navigate(-1)
+        navigate(-1);
     }
+
+    // function handleRemove(e){
+    //     setInput({
+    //         ...input,
+    //         types : input.types.filter(t => t !== e)
+    //     })
+    // }
 
     return (
         <div>
@@ -72,6 +111,9 @@ export default function RecipeCreate(){
                     name='name'
                     onChange={(e)=>handleChange(e)}
                     />
+                    {errors.name && (
+                        <p>{errors.name}</p>
+                    )}
                 </div>
                 {/* <div>
                     <label>Diets</label>
@@ -86,9 +128,12 @@ export default function RecipeCreate(){
                 </div> */}
                 <div>
                     <p>Diets</p>
+                    {/* {errors.diets && (
+                        <p>{errors.diets}</p>
+                    )} */}
                     {type.map((t)=>(
                         <label>
-                        <input type='checkbox' value={t} name={t} onChange={(e)=> handleCheckbox(e)}/> {t}
+                        <input type='checkbox' value={t} name='diets' onChange={(e)=> handleCheckbox(e)}/> {t}
                         </label>
                             ))}
                 </div>
@@ -101,6 +146,9 @@ export default function RecipeCreate(){
                     name='steps'
                     onChange={(e)=>handleChange(e)}
                     />
+                    {errors.steps && (
+                        <p>{errors.steps}</p>
+                    )}
                 </div>
                 <div>
                     <label>Summary</label>
@@ -111,6 +159,9 @@ export default function RecipeCreate(){
                     name='summary'
                     onChange={(e)=>handleChange(e)}
                     />
+                    {errors.summary && (
+                        <p>{errors.summary}</p>
+                    )}
                 </div>
                 <div>
                     <label>Spoonacular Score</label>
@@ -121,6 +172,9 @@ export default function RecipeCreate(){
                     name='spoonacularScore'
                     onChange={(e)=>handleChange(e)}
                     />
+                    {errors.spoonacularScore && (
+                        <p>{errors.spoonacularScore}</p>
+                    )}
                 </div>
                 <div>
                     <label>Health Score</label>
@@ -131,6 +185,9 @@ export default function RecipeCreate(){
                     name='healthScore'
                     onChange={(e)=>handleChange(e)}
                     />
+                    {errors.healthScore && (
+                        <p>{errors.healthScore}</p>
+                    )}
                 </div>
                 <div>
                     <label>Image</label>
@@ -141,6 +198,9 @@ export default function RecipeCreate(){
                     name='image'
                     onChange={(e)=>handleChange(e)}
                     />
+                    {errors.image && (
+                        <p>{errors.image}</p>
+                    )}
                 </div>
                 <button type='submit'>Create recipe!</button>
             </form>

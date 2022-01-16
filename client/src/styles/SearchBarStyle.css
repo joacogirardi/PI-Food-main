@@ -1,0 +1,18 @@
+.gen {
+    position: relative;
+    right: 259px;
+}
+
+.searchb{
+    height: 24px;
+    border-color: white;
+}
+
+.btn {
+    color: #4c4c4c;
+    height: 28px;
+    border-color: white;
+    position: relative;
+    left: 1px;
+    top: 1px;
+}

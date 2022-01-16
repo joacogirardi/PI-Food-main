@@ -1,0 +1,38 @@
+.navstyle {
+    height: 80px;
+    background-color: #e5b56d;
+    box-shadow: 10px 10px 100px 100px rgb(0 0 0);
+}
+
+.imgsize {
+    height: 119px;
+    position: relative;
+    bottom: 22px;
+}
+
+.navhome {
+    background-color: #83b440;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filters{
+    position: relative;
+    right: 85px;
+}
+
+.createrecipe{
+    color: #4c4c4c;
+    height: 28px;
+    border-color: white;
+    position: relative;
+    left: 256px;
+    top: 1px;
+}
+
+.bg {
+    background : url(https://wallpaperaccess.com/full/3086351.jpg)
+
+}
