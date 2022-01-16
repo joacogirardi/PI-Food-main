@@ -17,10 +17,10 @@ module.exports = (sequelize) => {
     image: {
       type : DataTypes.STRING,
     },
-    dishTypes: {
+    diets: {
       type : DataTypes.STRING,
     },
-    diets: {
+    dishTypes: {
       type : DataTypes.STRING,
     },
     summary: {

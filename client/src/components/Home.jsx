@@ -5,6 +5,7 @@ import Card from './Card';
 import {getRecipes, filterRecipesByDiet, orderByName, orderBySpoonacularScore} from '../actions/index';
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
+import { Link } from "react-router-dom";
 
 
 export default function Home () {
@@ -80,6 +81,9 @@ function handleSortScore(e){
                     <option value='paleolithic'> paleolithic </option>
                     <option value='primal'> Primal </option>
                 </select>
+                    <Link to='/recipe'>
+                        <button>Create recipe</button>
+                    </Link>
             </div>
             {   
                 currentRecipes?.map((e)=>{

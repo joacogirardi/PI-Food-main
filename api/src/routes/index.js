@@ -2,11 +2,11 @@ const { Router } = require('express');
 const axios = require('axios');
 const {Type, Recipe} = require('../db')
 
-const API_KEY = 'e790c2ade9994f8680bb905053031174';
+const API_KEY = '93bd2fce843c48c9adf6bba55a89c58c';
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
-
+ 
 const router = Router();
 
 // Configurar los routers
@@ -29,7 +29,7 @@ const recipes_api = async()=>{
                 summary : data.summary,
                 spoonacularScore : data.spoonacularScore,
                 healthScore : data.healthScore,
-                steps : data.analyzedInstructions[0],
+                steps : data.analyzedInstructions[0]? data.analyzedInstructions[0].steps : "Steps Not Available",
             })
         }
         return recipe_json;

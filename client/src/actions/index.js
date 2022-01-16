@@ -74,3 +74,18 @@ export const postRecipes = (payload)=>{
         }
     }
 }
+
+export const getDetails = (id)=>{
+    return async function(dispatch){
+        try{
+            let json = await axios.get(`http://localhost:3001/recipes/${id}`);
+            return dispatch({
+                type : "GET_DETAIL",
+                payload : json.data
+            });
+        }
+        catch(e){
+            console.log(e)
+        }
+    }
+}
