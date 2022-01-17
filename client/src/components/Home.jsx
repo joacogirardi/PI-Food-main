@@ -6,13 +6,10 @@ import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
 import NavBar from "./NavBar";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import '../styles/NavStyle.css'
 
 
-const Div = styled.div`
-background: linear-gradient(to bottom,#000000,#c28f3c, #ad7e38, #d9a755, #f1c077, #e9b869, #e9bd75);
-`
+
 
 export default function Home () {
 const dispatch = useDispatch();
@@ -66,12 +63,12 @@ function handleSortScore(e){
                 <SearchBar />
                 <div className="filters">
                     <select onChange={e=> {handleSortName(e)}}>
-                        <option value="" disabled selected>Order alfabeticam</option>   
+                        <option value="" disabled selected>Sort Alphabetically</option>   
                         <option value='asc'> asce </option>
                         <option value='dsc'> desc </option>
                     </select>
                     <select onChange={e=> {handleSortScore(e)}}>
-                        <option value="" disabled selected>Order puntuacion</option>   
+                        <option value="" disabled selected>Sort by Score</option>   
                         <option value='asc'> asce </option>
                         <option value='dsc'> desc </option>
                     </select>
@@ -86,29 +83,35 @@ function handleSortScore(e){
                         <option value='paleolithic'> paleolithic </option>
                         <option value='primal'> Primal </option>
                     </select>
-                    <button onClick={e=> {handleClick(e)}}>
+                    <button className="rmflts" onClick={e=> {handleClick(e)}}>
                     clear filters
                     </button>
                 </div>
-                        <Link to='/recipe'>
-                            <button className="createrecipe">Create recipe</button>
-                        </Link>
+                    <Link to='/recipe'>
+                        <button className="createrecipe">Create recipe</button>
+                    </Link>
             </div>
-            {   
+              { 
+                currentRecipes.length > 0 ?(
                 currentRecipes?.map((e)=>{
                     return (
                         <Fragment>
-                            <Card image={e.image} name={e.name} diets={e.diets} id={e.id}/>
+                            <Card image={e.image} name={e.name} diets={e.diets} dishTypes={e.dishTypes} id={e.id}/>
                         </Fragment>
                     )
-                })
-
+                })) :
+                <div>
+                <img className="loadimg" src="https://media.giphy.com/media/nS7Gwwg9xutspW9yFy/giphy.gif" alt="Loading"/>
+                <h1 className="loadh1">Loading...</h1>
+                <h3 className="loadh3">Please wait while we find best recipes for you</h3>
+                    </div>
             }
             <Paginado 
                 recipesPage={recipesPage}
                 allRecipes={allRecipes.length}
                 paginado={paginado}
             />
+             <p className="creditos">website created and designed by Joaquin Girardi-FT20a in representation of <a href="https://www.soyhenry.com/">Henry</a> individual project</p>
         </div>
     )
 }

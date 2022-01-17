@@ -75,7 +75,7 @@
 .container .box:nth-child(1):before,
 .container .box:nth-child(1):after
 {
-  background: linear-gradient(315deg, #ff9000, #5b00a5)
+  background: linear-gradient(115deg, #f6bf35, #e5b56d);
 }
 
 .container .box:nth-child(2):before,
@@ -149,7 +149,7 @@
 
 .container .box .content h2
 {
-  font-size: 25px;
+  font-size: 18px;
   color: #fff;
   margin-bottom: 10px;
 }
@@ -165,8 +165,8 @@
 {
     display: flex;
     align-items: center;
-    margin-top: 61px;
-    color: #aa41df;;
+    color: #4e6e21;
+    font-size: 12px;
     background: #f6bf35;
     padding: 3px;
     border-radius: 4px;
@@ -180,4 +180,11 @@
   background: #ffc936;
   border: 1px solid rgba(255, 0, 88, 0.4);
   box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
+}
+
+.infh6{
+  position: relative;
+  bottom: 17px;
+  margin: 0;
+  color: #433731;
 }

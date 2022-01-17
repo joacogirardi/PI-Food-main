@@ -11,8 +11,10 @@
 .btn {
     color: #4c4c4c;
     height: 28px;
-    border-color: white;
+    border-color: navajowhite;
     position: relative;
     left: 1px;
     top: 1px;
+    background-color: navajowhite;
+
 }

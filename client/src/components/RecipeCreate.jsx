@@ -1,15 +1,20 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getTypes, postRecipes } from '../actions';
+import { getTypes, postRecipes, getDishTypes } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
+import '../styles/CreateStyle.css'
 
 
 export default function RecipeCreate(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const type = useSelector((state)=> state.recipeTypes);
+    const dishTypes = useSelector((state)=> state.dishTypes);
     const [errors, setErrors] = useState({});
+
+    console.log(type)
+    console.log(dishTypes)
 
     function validate(input) {
         const errors = {};
@@ -17,7 +22,10 @@ export default function RecipeCreate(){
             errors.name = '⚠️ Name is required ⚠️';
         }
         if (!input.diets.length) {
-            errors.diets = '⚠️ Diets is required ⚠️'
+            errors.diets = '⚠️ Diets are required ⚠️'
+        }
+        if (!input.dishTypes.length) {
+            errors.dishTypes = '⚠️ dishTypes are required ⚠️'
         }
         if (!input.image) {
             errors.image = '⚠️ image is required ⚠️'
@@ -42,7 +50,7 @@ export default function RecipeCreate(){
         name : "",
         image : "",
         diets : [],
-        // dishTypes : []
+        dishTypes : [],
         summary : "",
         spoonacularScore : "",
         healthScore : "",
@@ -50,7 +58,11 @@ export default function RecipeCreate(){
     })
 
     useEffect(()=>{
-        dispatch(getTypes())
+        dispatch(getTypes());
+    },[dispatch])
+
+    useEffect(()=>{
+        dispatch(getDishTypes());
     },[dispatch])
 
     function handleChange(e){
@@ -82,6 +94,7 @@ export default function RecipeCreate(){
             name : "",
             image : "",
             diets : [],
+            dishTypes : [],
             summary : "",
             spoonacularScore : "",
             healthScore : "",
@@ -98,8 +111,8 @@ export default function RecipeCreate(){
     // }
 
     return (
-        <div>
-            <Link to={"/home"}><button>Back</button> </Link>
+        <div className='bgcr'>
+        <div className='div'>
             <h1><strong>Create Recipe</strong></h1>
             <form onSubmit={(e)=>handleSubmit(e)}>
                 <div>
@@ -115,17 +128,17 @@ export default function RecipeCreate(){
                         <p>{errors.name}</p>
                     )}
                 </div>
-                {/* <div>
-                    <label>Diets</label>
-                    <select value={input.diets}>
-                        <option value="" disabled selected> Diet types </option>
+                <div>
+                    <label>Dish Types</label>
+                    <select value={input.dishTypes}>
+                        <option value="" disabled selected> Dish types </option>
 
-                            {type.map((t)=>(
+                            {dishTypes.map((t)=>(
                                 <option value={t}>{t}</option>
                             ))}
 
                     </select>
-                </div> */}
+                </div>
                 <div>
                     <p>Diets</p>
                     {/* {errors.diets && (
@@ -204,6 +217,8 @@ export default function RecipeCreate(){
                 </div>
                 <button type='submit'>Create recipe!</button>
             </form>
+            <Link to={"/home"}><button>Back</button> </Link>
+        </div>
         </div>
     )
 }

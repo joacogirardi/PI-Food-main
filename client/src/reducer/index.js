@@ -3,6 +3,7 @@ const initialState = {
     recipes : [],
     allRecipes : [],
     recipeTypes : [],
+    dishTypes : [],
     detail : []
 };
 
@@ -81,6 +82,11 @@ const rootReducer = (state = initialState, action)=>{
             return {
                 ...state,
                 recipeTypes : action.payload
+            }
+        case "GET_DISH_TYPES" :
+            return{
+                ...state,
+                dishTypes : action.payload
             }
         case "POST_RECIPE" : 
             return {

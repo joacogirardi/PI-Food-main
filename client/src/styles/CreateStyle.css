@@ -1,0 +1,24 @@
+
+
+.div{
+    position: relative;
+    background: rgb(63 63 63 / 71%);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 5px 15px rgb(0 0 0 / 51%);
+    border-radius: 25px;
+    color: #fff;
+    display: inline-table;
+    top: 11px;
+    height: 601px;
+    width: 891px;
+}
+
+
+.bgcr {
+    background: url(https://wallpaperaccess.com/full/3086499.jpg) no-repeat center center fixed; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    min-width: 100%;
+    min-height: 100%;
+}

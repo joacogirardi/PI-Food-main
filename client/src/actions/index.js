@@ -63,6 +63,24 @@ export const getTypes = ()=>{
     }
 }
 
+export const getDishTypes = ()=>{
+    return async function(dispatch){
+        try{
+            let dt = [];
+            let json = await axios.get('http://localhost:3001/recipes');
+            let mapper = json.data.map(e=> e.dishTypes);
+            mapper.forEach(a=>a.forEach(e=> !dt.includes(e)? dt.push(e) : e));
+            return dispatch({
+                type : "GET_DISH_TYPES",
+                payload : dt
+            })
+        }
+        catch(e){
+            console.log(e)
+        }
+    }
+}
+
 export const postRecipes = (payload)=>{
     return async function(){
         try{

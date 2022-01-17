@@ -1,5 +1,19 @@
 import React from "react";
-import '../styles/PaginadoStyle.css'
+import styled from "styled-components";
+
+const Div = styled.div`
+padding: 22px;
+height: 20px;
+`
+const Button = styled.button`
+color: #30251b;
+border-color: #e5b56d;
+margin: 4px;
+border-style: inset;
+border-radius: 5px;
+width: 50px;
+background-color : #e5b56d;;
+`
 
 export default function Paginado ({recipesPage, allRecipes, paginado}){
     const pageNumbers = [];
@@ -9,19 +23,15 @@ export default function Paginado ({recipesPage, allRecipes, paginado}){
     }
 
     return (
-        <div className="cont">
-            <ul>
+        <Div>
                 {
                 pageNumbers&&
                 pageNumbers.map(num =>(
-                    <li key = {num}>
-                        
-                    <button className="btn" onClick={() => paginado(num)}> {num} </button>
-                        
-                    </li>
+                    <a href="#">
+                    <Button onClick={() => paginado(num)}> {num} </Button>
+                    </a>
                 ))}
-            </ul>
-        </div>
+        </Div>
 
     )
 }

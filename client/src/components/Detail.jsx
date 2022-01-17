@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { getDetails } from '../actions/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import '../styles/DetailStyle.css'
 
 export default function Detail(props){
     const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export default function Detail(props){
     const recipe = useSelector((state)=> state.detail);
     console.log(recipe)
     return(
-        <div>
+        <div className='bg'>
             {
                 recipe.length > 0 ?
                 <div>
