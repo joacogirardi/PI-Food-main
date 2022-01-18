@@ -69,7 +69,8 @@ export const getDishTypes = ()=>{
             let dt = [];
             let json = await axios.get('http://localhost:3001/recipes');
             let mapper = json.data.map(e=> e.dishTypes);
-            mapper.forEach(a=>a.forEach(e=> !dt.includes(e)? dt.push(e) : e));
+            mapper.forEach(a=> Array.isArray(a) ? a.forEach(e=> !dt.includes(e)? dt.push(e) : e) : a)
+    
             return dispatch({
                 type : "GET_DISH_TYPES",
                 payload : dt
