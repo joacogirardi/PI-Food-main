@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import '../styles/PaginadoStyle.css'
 
 const Div = styled.div`
 padding: 22px;
@@ -24,15 +25,15 @@ export default function Paginado ({recipesPage, allRecipes, paginado}){
     }
 
     return (
-        <Div>
+        <div className="cont">
                 {
                 pageNumbers&&
                 pageNumbers.map(num =>(
                     <a href="#">
-                    <Button onClick={() => paginado(num)}> {num} </Button>
+                    <button className="nums" onClick={() => paginado(num)}> {num} </button>
                     </a>
                 ))}
-        </Div>
+        </div>
 
     )
 }

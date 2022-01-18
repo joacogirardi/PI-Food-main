@@ -1,0 +1,21 @@
+
+
+.cont{
+    padding: 22px;
+    height: 20px;
+}
+
+.nums{
+    color: #30251b;
+    border-color: #e5b56d;
+    margin: 4px;
+    border-style: inset;
+    border-radius: 5px;
+    width: 50px;
+    background-color : #e5b56d;
+    cursor: pointer;
+}
+
+button :hover{
+    background-color : #ff9900;
+}

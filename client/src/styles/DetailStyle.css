@@ -21,6 +21,10 @@
     font-size: 30px;
 }
 
+.imgd{
+    width: 569px;
+}
+
 .diets{
     color: white;
     font-weight: 500;
@@ -73,3 +77,24 @@
     margin: 6px;
     cursor: pointer;
 }
+
+.loadh3d{
+    color: #62ff00;
+    position: relative;
+    bottom: 69px;
+    margin: 206px;
+}
+
+.loadh1d{
+    color: #006a0d;
+    margin: 66px;
+    position: relative;
+    top: 127px;
+}
+
+.loadimgd{
+    height: 317px;
+    position: relative;
+    top: 151px;
+}
+

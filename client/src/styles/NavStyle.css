@@ -41,6 +41,7 @@
     color: wheat;
     border-radius: 10px;
     margin: 4px;
+    cursor: pointer;
 }
 
 .bg {

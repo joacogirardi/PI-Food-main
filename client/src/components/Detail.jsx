@@ -22,11 +22,12 @@ export default function Detail(props){
                 recipe.length > 0 ?
                 <div className='crd'>
                     <h1 className='name'>{recipe[0].name}</h1>
-                    <img src={recipe[0].image} alt='img nf' />
+                    <img className='imgd' src={recipe[0].image} alt='img nf' />
                     <p>Diets :</p>
                     <h3 className='diets'>{recipe[0].diets}</h3>
                     <p>Dish types :</p>
                     <h3 className='dish'>{recipe[0].dishTypes}</h3>
+                    <p>Summary :</p>
                     <h2 className='sumsteps'>{recipe[0].summary.replace(/<[^>]*>?/g, "")}</h2>
                     <div className='scores'>
                             <p className='pscore'>Score</p>
@@ -34,14 +35,15 @@ export default function Detail(props){
                             <p className='pscore'>Health score</p>
                             <h2 className='scoreh'>{recipe[0].healthScore}</h2>
                     </div>
+                    <p>Steps :</p>
                     <h2 className='sumsteps'>{recipe[0].steps[0].step ? recipe[0].steps.map(e=>(' ' + e.number + ' : ' + e.step)) : recipe[0].steps}</h2>
                     <Link to={'/home'}><button className='backhome'>Back Home</button></Link>
                 </div>
                 :
                 <div>
-                    <img className="loadimg" src="https://media.giphy.com/media/nS7Gwwg9xutspW9yFy/giphy.gif" alt="Loading"/>
-                        <h1 className="loadh1">Loading...</h1>
-                    <h3 className="loadh3">Please wait</h3>
+                    <img className="loadimgd" src="https://media.giphy.com/media/nS7Gwwg9xutspW9yFy/giphy.gif" alt="Loading"/>
+                        <h1 className="loadh1d">Loading...</h1>
+                    <h3 className="loadh3d">Please wait</h3>
                 </div>
             }
         </div>

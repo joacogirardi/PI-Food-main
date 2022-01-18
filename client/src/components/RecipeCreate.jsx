@@ -18,28 +18,28 @@ export default function RecipeCreate(){
     function validate(input) {
         const errors = {};
         if (!input.name) {
-            errors.name = '⚠️ Name is required ⚠️';
+            errors.name = '*Name is required ';
         }
         if (!input.diets.length) {
-            errors.diets = '⚠️ Diets are required ⚠️'
+            errors.diets = '*Diets are required '
         }
         if (!input.dishTypes.length) {
-            errors.dishTypes = '⚠️ dishTypes are required ⚠️'
+            errors.dishTypes = '*DishTypes are required '
         }
         if (!input.image) {
-            errors.image = '⚠️ image is required ⚠️'
+            errors.image = '*Image is required '
         }
         if (!input.summary) {
-            errors.summary = '⚠️ summary is required ⚠️'
+            errors.summary = '*Summary is required '
         }
         if (!input.spoonacularScore) {
-            errors.spoonacularScore = '⚠️ spoonacular Score is required ⚠️'
+            errors.spoonacularScore = '*Spoonacular Score is required '
         }
         if (!input.healthScore) {
-            errors.healthScore = '⚠️ health Score is required ⚠️'
+            errors.healthScore = '*Health Score is required '
         }
         if (!input.steps) {
-            errors.steps = '⚠️ steps is required ⚠️'
+            errors.steps = '*Steps is required '
         }
     
         return errors;
@@ -243,7 +243,17 @@ export default function RecipeCreate(){
                         <p className='error'>{errors.image}</p>
                     )}
                 </div>
-                <button type='submit'>Create recipe!</button>
+                {
+                    !errors.name &&
+                    !errors.diets &&
+                    !errors.dishTypes &&
+                    !errors.summary &&
+                    !errors.spoonacularScore &&
+                    !errors.healthScore &&
+                    !errors.steps &&
+                    !errors.image
+                    ? <button type='submit'>Create Recipe</button> : <p className='error2'> Check the errors on the fields <br /> before create recipe</p>
+                }
             </form>
             <Link to={"/home"}><button>Back</button> </Link>
         </div>
