@@ -20,20 +20,28 @@ export default function Detail(props){
         <div className='bg'>
             {
                 recipe.length > 0 ?
-                <div>
-                    <h1>{recipe[0].name}</h1>
+                <div className='crd'>
+                    <h1 className='name'>{recipe[0].name}</h1>
                     <img src={recipe[0].image} alt='img nf' />
-                    <h3>{recipe[0].diets}</h3>
-                    <h3>{recipe[0].dishTypes}</h3>
-                    <h2>{recipe[0].summary}</h2>
-                    <h2>{recipe[0].spoonacularScore}</h2>
-                    <h2>{recipe[0].healthScore}</h2>
-                    <h2>{recipe[0].steps[0].step ? recipe[0].steps.map(e=>(' ' + e.number + ' : ' + e.step)) : recipe[0].steps}</h2>
-                    <Link to={'/home'}><button>Back Home</button></Link>
+                    <p>Diets :</p>
+                    <h3 className='diets'>{recipe[0].diets}</h3>
+                    <p>Dish types :</p>
+                    <h3 className='dish'>{recipe[0].dishTypes}</h3>
+                    <h2 className='sumsteps'>{recipe[0].summary.replace(/<[^>]*>?/g, "")}</h2>
+                    <div className='scores'>
+                            <p className='pscore'>Score</p>
+                            <h2 className='scoren'>{recipe[0].spoonacularScore}</h2>
+                            <p className='pscore'>Health score</p>
+                            <h2 className='scoreh'>{recipe[0].healthScore}</h2>
+                    </div>
+                    <h2 className='sumsteps'>{recipe[0].steps[0].step ? recipe[0].steps.map(e=>(' ' + e.number + ' : ' + e.step)) : recipe[0].steps}</h2>
+                    <Link to={'/home'}><button className='backhome'>Back Home</button></Link>
                 </div>
                 :
                 <div>
-                    <h1>Loading...</h1>
+                    <img className="loadimg" src="https://media.giphy.com/media/nS7Gwwg9xutspW9yFy/giphy.gif" alt="Loading"/>
+                        <h1 className="loadh1">Loading...</h1>
+                    <h3 className="loadh3">Please wait</h3>
                 </div>
             }
         </div>

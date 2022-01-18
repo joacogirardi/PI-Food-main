@@ -12,7 +12,8 @@ margin: 4px;
 border-style: inset;
 border-radius: 5px;
 width: 50px;
-background-color : #e5b56d;;
+background-color : #e5b56d;
+cursor: pointer;
 `
 
 export default function Paginado ({recipesPage, allRecipes, paginado}){

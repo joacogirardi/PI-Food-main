@@ -8,8 +8,27 @@ import NavBar from "./NavBar";
 import { Link } from "react-router-dom";
 import '../styles/NavStyle.css'
 
+const elem = document.documentElement;
 
+function openFullscreen() {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { 
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { 
+      elem.msRequestFullscreen();
+    }
+  }
 
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
+    }
+  }  
 
 export default function Home () {
 const dispatch = useDispatch();
@@ -106,6 +125,10 @@ function handleSortScore(e){
                 <h3 className="loadh3">Please wait while we find best recipes for you</h3>
                     </div>
             }
+            <div>
+                <button className="fsm" onClick={openFullscreen}>Full screen mode</button>
+                <button className="fsm" onClick={closeFullscreen}>Exit Full screen mode</button>
+            </div>
             <Paginado 
                 recipesPage={recipesPage}
                 allRecipes={allRecipes.length}

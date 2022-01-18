@@ -12,9 +12,8 @@ export default function RecipeCreate(){
     const type = useSelector((state)=> state.recipeTypes);
     const dishTypes = useSelector((state)=> state.dishTypes);
     const [errors, setErrors] = useState({});
-
-    console.log(type)
-    console.log(dishTypes)
+    
+    
 
     function validate(input) {
         const errors = {};
@@ -76,11 +75,18 @@ export default function RecipeCreate(){
         }));
     }
 
+    function handleSelect(e) {
+        setInput({
+            ...input,
+            dishTypes: [...input.dishTypes, e.target.value]
+        })
+    }
+
     function handleCheckbox(e){
         if(e.target.checked){
             setInput({
                 ...input,
-                diets : [...input.diets, e.target.value].join(',')
+                diets : [...input.diets, e.target.value]
             })
         }
     }
@@ -88,7 +94,6 @@ export default function RecipeCreate(){
     function handleSubmit(e){
         e.preventDefault();
         dispatch(postRecipes(input));
-        console.log(input);
         alert("Recipe successfully created");
         setInput({
             name : "",
@@ -103,12 +108,12 @@ export default function RecipeCreate(){
         navigate(-1);
     }
 
-    // function handleRemove(e){
-    //     setInput({
-    //         ...input,
-    //         types : input.types.filter(t => t !== e)
-    //     })
-    // }
+    function handleRemove(e){
+        setInput({
+            ...input,
+            dishTypes : input.dishTypes.filter(t => t !== e)
+        })
+    }
 
     return (
         <div className='bgcr'>
@@ -116,103 +121,126 @@ export default function RecipeCreate(){
             <h1><strong>Create Recipe</strong></h1>
             <form onSubmit={(e)=>handleSubmit(e)}>
                 <div>
-                    <label>Name :</label>
-                    <input 
-                    placeholder='Name'
+                    <label className='labelA'>Recipe Name :</label>
+                    <input
+                    className='inpt' 
+                    placeholder='Insert name'
                     type='text'
                     value={input.name}
                     name='name'
                     onChange={(e)=>handleChange(e)}
                     />
                     {errors.name && (
-                        <p>{errors.name}</p>
+                        <p className='error' >{errors.name}</p>
                     )}
                 </div>
                 <div>
-                    <label>Dish Types</label>
-                    <select value={input.dishTypes}>
-                        <option value="" disabled selected> Dish types </option>
-
+                    <label className='labelDish'>Dish Types :</label>
+                    <select className='slt' onChange={(e)=>handleSelect(e)} value={input.dishTypes}>
+                        <option value="" disabled selected> Select dish types </option>
+                        
                             {dishTypes.map((t)=>(
                                 <option value={t}>{t}</option>
                             ))}
 
                     </select>
+                <div className='envts'>
+
+                    {input.dishTypes.map(e=>
+                    <div className='slct'>
+                        <ul className='li'>
+                            <button className='btnrm' type='button' onClick={()=> handleRemove(e)}> x </button>
+                            <li>
+                            {e}
+                            </li>
+                        </ul>
+                    </div>
+                        )}
+                   
+                </div>
+                    {errors.dishTypes && (
+                        <p className='error'>{errors.dishTypes}</p>
+                    )}
                 </div>
                 <div>
-                    <p>Diets</p>
+                    <p className='pdiet'>Diets</p>
                     {/* {errors.diets && (
                         <p>{errors.diets}</p>
                     )} */}
                     {type.map((t)=>(
-                        <label>
-                        <input type='checkbox' value={t} name='diets' onChange={(e)=> handleCheckbox(e)}/> {t}
+                        <label className='cbx'>
+                        <input className='icbx' type='checkbox' value={t} name='diets' onChange={(e)=> handleCheckbox(e)}/> {t}
                         </label>
                             ))}
                 </div>
                 <div>
-                    <label>Steps :</label>
-                    <input 
-                    placeholder='Steps'
+                    <label className='labelB'>Steps :</label>
+                    <input
+                    className='inpt' 
+                    placeholder='Insert steps'
                     type='text'
                     value={input.steps}
                     name='steps'
                     onChange={(e)=>handleChange(e)}
                     />
                     {errors.steps && (
-                        <p>{errors.steps}</p>
+                        <p className='error' >{errors.steps}</p>
                     )}
                 </div>
                 <div>
-                    <label>Summary</label>
+                    <label className='labelC'>Summary :</label>
                     <input 
-                    placeholder='Summary'
+                    className='inpt'
+                    placeholder='Write an summary'
                     type='text'
                     value={input.summary}
                     name='summary'
                     onChange={(e)=>handleChange(e)}
                     />
                     {errors.summary && (
-                        <p>{errors.summary}</p>
+                        <p className='error'>{errors.summary}</p>
                     )}
                 </div>
                 <div>
-                    <label>Spoonacular Score</label>
+                    <label className='labelD'>Spoonacular Score :</label>
                     <input 
-                    placeholder='spoonacular Score'
+                    className='inpt'
+                    placeholder='Insert Score'
                     type='number'
                     value={input.spoonacularScore}
                     name='spoonacularScore'
                     onChange={(e)=>handleChange(e)}
                     />
                     {errors.spoonacularScore && (
-                        <p>{errors.spoonacularScore}</p>
+                        <p className='error'>{errors.spoonacularScore}</p>
                     )}
                 </div>
                 <div>
-                    <label>Health Score</label>
+                    <label className='labelE'>Health Score :</label>
                     <input 
-                    placeholder='healthScore'
+                    className='inpt'
+                    placeholder='Insert healthScore'
                     type='number'
                     value={input.healthScore}
                     name='healthScore'
                     onChange={(e)=>handleChange(e)}
                     />
                     {errors.healthScore && (
-                        <p>{errors.healthScore}</p>
+                        <p className='error'>{errors.healthScore}</p>
                     )}
                 </div>
                 <div>
-                    <label>Image</label>
+                    <label className='labelF'>Image :</label>
                     <input 
-                    placeholder='Image url'
+                    className='inpt'
+                    placeholder='Paste image url'
                     type='text'
                     value={input.image}
                     name='image'
                     onChange={(e)=>handleChange(e)}
                     />
                     {errors.image && (
-                        <p>{errors.image}</p>
+                        <p className='error'>{errors.image}</p>
                     )}
                 </div>
                 <button type='submit'>Create recipe!</button>

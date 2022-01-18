@@ -31,6 +31,16 @@
     left: 256px;
     top: 1px;
     background-color: #f6b617;
+    cursor: pointer;
+}
+
+.fsm{
+    position: relative;
+    top: 10px;
+    background-color: #000000db;
+    color: wheat;
+    border-radius: 10px;
+    margin: 4px;
 }
 
 .bg {
@@ -63,6 +73,7 @@
     height: 18px;
     position: relative;
     top: 2px;
+    cursor: pointer;
 }
 
 .creditos{
@@ -71,6 +82,9 @@
     position: relative;
     bottom: 6px;
     color: #9b8463;
+    position: relative;
+    bottom: 0px;
+    font-size: 10px;
 }
 
 

@@ -4,3 +4,72 @@
     box-shadow: inset 0px -20px 1020px 10px rgb(0 0 0);
 
 }
+
+.crd {
+    width: 762px;
+    display: flow-root;
+    position: relative;
+    left: 285px;
+    background: rgb(48 48 48 / 52%);
+    backdrop-filter: blur(3px);
+    box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
+    border-radius: 25px;
+}
+
+.name {
+    color: wheat;
+    font-size: 30px;
+}
+
+.diets{
+    color: white;
+    font-weight: 500;
+    background-color: black;
+}
+
+.dish{
+    color: white;
+    font-weight: 500;
+}
+
+.sumsteps{
+    font-size: 15px;
+    padding: 31px;
+    color: black;
+}
+
+.scores {
+    display: flex;
+    background: black;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.pscore{
+    position: relative;
+    top: 17px;
+    left: 17px;
+}
+
+.scoren{
+    position: relative;
+    bottom: 10px;
+    right: 16px;
+}
+.scoreh{
+    position: relative;
+    right: 43px;
+    bottom: 10px;
+}
+
+.backhome{
+    color: #4c4c4c;
+    height: 28px;
+    border-color: navajowhite;
+    position: relative;
+    background-color: navajowhite;
+    margin: 6px;
+    cursor: pointer;
+}

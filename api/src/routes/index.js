@@ -2,7 +2,7 @@ const { Router } = require('express');
 const axios = require('axios');
 const {Type, Recipe} = require('../db')
 
-const API_KEY = '7bf05acb45ae46589733c7dfcfd77037';
+const API_KEY = 'faf24af68e6f43e6a230e7337d425ec5';
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -169,7 +169,7 @@ router.get('/types', async (req, res)=>{
         console.log(error)
     }
 });
-
+ 
 router.post('/recipe', async (req, res)=>{
     try {
         const {
@@ -186,8 +186,8 @@ router.post('/recipe', async (req, res)=>{
         const newRecipe = await Recipe.create({
             name : name,
             image : image,
-            dishTypes : dishTypes,
-            diets : diets,
+            dishTypes : dishTypes.join(', '),
+            diets : diets.join(', '),
             summary : summary,
             spoonacularScore : spoonacularScore,
             healthScore : healthScore,

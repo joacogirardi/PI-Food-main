@@ -22,3 +22,130 @@
     min-width: 100%;
     min-height: 100%;
 }
+
+.slct{
+    display: inline-flex;
+    padding: 2px;
+    position: relative;
+    right: 140px;
+}
+.envts {
+    position: relative;
+    bottom: 8px;
+}
+
+.li {
+    padding: 5px;
+    display: inline-flex;
+    font-size: 14px;
+    position: relative;
+    left: 144px;
+    margin: 0px;
+    list-style-type: none;
+    flex-direction: column;
+    align-content: stretch;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnrm{
+    background-color: #c20706;
+    border-radius: 7px;
+    border-color: #990000;
+    cursor: pointer;
+}
+
+.slt{
+    width: 177px;
+    background-color: #143309;
+    color: #878787;
+    margin: 13px;
+}
+
+.labelDish{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    right: 46px;
+    top: 11px;
+}
+
+.inpt{ 
+    background-color: #143309;
+    border-color: #5f925e;
+    color: white;
+    display: -webkit-box;
+    position: relative;
+    left: 356px;
+}
+
+
+.p{
+    position: relative;
+    padding: 8px;
+    color: white;
+    border-radius: 61px;
+    background-color: #00000054;
+    font-size: 14px;
+    margin: auto;
+    display: table;
+}
+
+ .pdiet{
+    background-color: #6391008f;
+    display: table-cell;
+    padding: 1px;
+    border-radius: 9px;
+    width: 174px;
+    position: relative;
+    left: 357px;
+}
+
+.cbx {
+    position: relative;
+    display: -webkit-box;
+    left: 353px;
+}
+
+.icbx {
+    position: relative;
+}
+
+.error{
+    background-color: red;
+    display: initial;
+    position: relative;
+    border-radius: 17px;
+    font-size: 12px;
+}
+
+
+.labelA {
+    position: relative;
+    right: 38px;
+}
+
+.labelB {
+    position: relative;
+    right: 65px;
+}
+
+.labelC {
+    position: relative;
+    right: 52px;
+}
+
+.labelD {
+    position: relative;
+    right: 19px;
+}
+
+.labelE {
+    position: relative;
+    right: 40px;
+}
+
+.labelF {
+    position: relative;
+    right: 62px;
+}
